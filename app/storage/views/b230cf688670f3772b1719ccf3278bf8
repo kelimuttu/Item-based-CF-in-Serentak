@@ -1,0 +1,193 @@
+<?php $__env->startSection('content'); ?>
+
+		<!-- <div class="fixed">  -->
+			<nav class="top-bar" data-topbar role="navigation">
+				<ul class="title-area">
+					<li class="name">
+						<?php echo HTML::image('assets/img/logo.png', 'Serentak', array('class'=>'logo')); ?>
+
+					</li>
+				</ul>
+				<?php if(Session::has('logged_in')): ?>
+				<section class="top-bar-section">
+		        <!-- Right Nav Section --> 
+		        <ul class="right">
+		          <li class="has-dropdown"> <a href=""><?php echo Session::get('user_name'); ?></a> 
+		            <ul class="dropdown">
+		            	<?php if(Session::get('level')=='user'): ?>
+		            	<li><a href="<?php echo URL::to('/beranda'); ?>">Beranda</a></li>
+		            	<li><a href="<?php echo URL::to('/profile'); ?>">Akun</a></li>
+		            	<li><a href="<?php echo URL::to('/logout'); ?>">Keluar</a></li>
+		            	<?php elseif(Session::get('level')=='admin'): ?>
+		            	<li><a href="<?php echo URL::to('/beranda'); ?>">Beranda Admin</a></li>
+		            	<li><a href="<?php echo URL::to('/tambah/komunitas'); ?>">Tambahkan Komunitas</a></li>
+		            	<li><a href="<?php echo URL::to('/tambah/acara'); ?>">Tambahkan Acara</a></li>
+		            	<li><a href="<?php echo URL::to('/profile'); ?>">Akun</a></li>
+		            	<li><a href="<?php echo URL::to('/logout'); ?>">Keluar</a></li>
+		            	<?php endif; ?>
+		            </ul>
+		          </li> 
+		        </ul> 
+
+		        <div class="large-3 columns right">
+		        	<?php echo Form::open(array('method'=>'post', 'url'=>'/pencarian')); ?>
+
+				      <div class="row collapse postfix-round">
+				        <div class="small-9 columns">
+				          <input type="text" name="key" placeholder="Cari Komunitas">
+				        </div>
+				        <div class="small-3 columns">
+				          <button type="submit" class="button postfix">Cari</button>
+				        </div>
+				      </div>
+				    <?php echo Form::close(); ?>
+
+				</div>
+		        <?php endif; ?>
+		      </section> 
+			</nav> 
+		<!-- </div> -->
+
+		<?php if((Session::has('logged_in'))&&(Session::get('level')=='user')): ?>
+		<div class="row">
+			<div class="large-12 columns">
+				<?php if($rating == 0): ?>
+				<h1 class="text-center">Mulailah memberikan rating untuk mendapat rekomendasi</h1>
+				<div class="rating">
+					<?php foreach($komunitas as $listkom): ?>
+					<div class="border">
+						<div class="row collapse">
+							<div class="large-8 columns">
+								<a href="<?php echo URL::to('/komunitas/'.$listkom->slug); ?>"><h3><?php echo $listkom->nama_komunitas; ?></h1></a>
+								<p><?php echo $listkom->ringkasan; ?></p>
+							</div>
+							<div class="large-4 columns text-center">
+								<span>
+									<?php $i = 1;
+									$rate = $listkom->avg_rate;
+									if ($rate > 1) {
+										do { ?>
+											<i class="fi-star"></i>
+											<?php $i++; 
+											} while ( $i <= $rate);
+									}else{
+										echo "Belum pernah mendapat rating";
+									}
+									?>
+								</span>
+								<!-- <h5>Kategori : </h5> -->
+							</div>
+						</div>
+					</div>
+					<?php endforeach; ?>
+				<?php elseif(($rating > 0) && ($cek == TRUE)): ?>
+				<h1 class="text-center">Di bawah ini rekomendasi komunitas yang mungkin Anda sukai</h1>
+				<div class="rating">
+					<?php foreach($rekomen as $rec): ?>
+					<div class="border">
+						<div class="row collapse">
+							<div class="large-8 columns">
+								<a href="<?php echo URL::to('/komunitas/'.$rec->slug); ?>"><h3><?php echo $rec->nama_komunitas; ?></h1></a>
+								<p><?php echo $rec->ringkasan; ?></p>
+							</div>
+							<div class="large-4 columns text-center">
+								<span>
+									<?php $i = 1;
+									$rate = $rec->avg_rate;
+									if ($rate > 1) {
+										do { ?>
+											<i class="fi-star"></i>
+											<?php $i++; 
+											} while ( $i <= $rate);
+									}else{
+										echo "Belum pernah mendapat rating";
+									}
+									?>
+								</span>
+								<!-- <h5>Kategori : </h5> -->
+							</div>
+						</div>
+					</div>
+					<?php endforeach; ?>
+				<?php else: ?>
+				<h1 class="text-center">Berikan lebih banyak rating untuk mendapat rekomendasi</h1>
+				<div class="rating">
+					<?php foreach($rand as $random): ?>
+					<div class="border">
+						<div class="row collapse">
+							<div class="large-8 columns">
+								<a href="<?php echo URL::to('/komunitas/'.$random->slug); ?>"><h3><?php echo $random->nama_komunitas; ?></h1></a>
+								<p><?php echo $random->ringkasan; ?></p>
+							</div>
+							<div class="large-4 columns text-center">
+								<span>
+									<?php $i = 1;
+									$rate = $random->avg_rate;
+									if ($rate > 1) {
+										do { ?>
+											<i class="fi-star"></i>
+											<?php $i++; 
+											} while ( $i <= $rate);
+									}else{
+										echo "Belum pernah mendapat rating";
+									}
+									?>
+								</span>
+								<!-- <h5>Kategori : </h5> -->
+							</div>
+						</div>
+					</div>
+					<?php endforeach; ?>
+				<?php endif; ?>
+					<a href="<?php echo URL::to('/daftar-komunitas/'); ?>" class="">Lihat lebih banyak Komunitas</a>
+				</div>
+
+				<h4>Di bawah ini daftar acara akhir-akhir ini</h4>
+				<div class="rating">
+					<?php foreach($acara as $listacara): ?>
+					<div class="border">
+						<div class="row collapse">
+							<div class="large-8 columns">
+								<a href="<?php echo URL::to('/acara/'.$listacara->slug); ?>"><h3><?php echo $listacara->judul_acara; ?></h1></a>
+								<h6><span><i class="fi-marker"></i> <?php echo $listacara->tempat; ?></span></h6>
+								<?php 
+								$tgl = $listacara->tanggal;	
+								$tanggal = date("d",strtotime($tgl)).' '.date("F",strtotime($tgl)).' '.date("o",strtotime($tgl))."\n";
+								?>
+								<h6><span><i class="fi-calendar"></i> <?php echo $tanggal; ?></span></h6>
+							</div>
+							<div class="large-4 columns text-center">
+								<a href="<?php echo URL::to('/acara/'.$listacara->slug); ?>" class="button">Detail Kegiatan</a></span>
+							</div>
+						</div>
+					</div>
+					<?php endforeach; ?>
+					<a href="<?php echo URL::to('/daftar-acara/'); ?>" class="">Lihat lebih banyak kegiatan</a>
+				</div>
+			</div>
+		</div>
+		<?php elseif((Session::has('logged_in'))&&(Session::get('level')=='admin')): ?>
+
+		<div class="row text-center">
+			<h1>Beranda Admin</h1>
+			<div class="large-4 columns text-center">
+				<a href="<?php echo URL::to('/beranda/users'); ?>"><span><i width="60px" class="fi-male-female"></i></span>
+				<h5>Manajemen User</h5></a>
+			</div>
+			<div class="large-4 columns text-center">
+				<a href="<?php echo URL::to('/beranda/komunitas'); ?>"><span><i class="fi-torsos-all"></i></span>
+				<h5>Manajemen Komunitas</h5></a>
+			</div>
+			<div class="large-4 columns text-center">
+				<a href="<?php echo URL::to('/beranda/acara'); ?>"><span><i class="fi-results-demographics"></i></span>
+					<h5>Manajemen Event</h5></a>
+			</div>
+		</div>
+		<?php endif; ?>
+
+		<div id="footer">
+        	<p>&copy; Serentak. 2015</p>
+		</div>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.main_layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

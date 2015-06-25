@@ -1,0 +1,59 @@
+<?php $__env->startSection('content'); ?>
+		<!-- <div class="fixed">  -->
+			<nav class="top-bar" data-topbar role="navigation">
+				<ul class="title-area">
+					<li class="name">
+						<?php echo HTML::image('assets/img/logo.png', 'Serentak', array('class'=>'logo')); ?>
+
+					</li>
+				</ul>
+			</nav> 
+		<!-- </div> -->
+
+		<div class="row">
+			<div class="large-12 columns">
+				<h1 class="text-center">Selamat datang di Serentak..</h1>
+				<h4>Di bawah ini beberapa komunitas yang mungkin Anda sukai</h4>
+				<div class="rating">
+					<div class="border">
+						<div class="row collapse">
+							<div class="large-8 columns">
+								<h3>Lorem ipsum</h1>
+								<p>Lorem ipsum dolor blah. Lorem ipsum dolor blah.</p>
+							</div>
+							<div class="large-4 columns text-center">
+								<a href="#" class="button">Ikuti</a></span>
+							</div>
+						</div>
+					</div>
+					<div class="border">
+						<div class="row collapse">
+							<div class="large-8 columns">
+								<h3>Lorem ipsum</h1>
+								<p>Lorem ipsum dolor blah. Lorem ipsum dolor blah.</p>
+							</div>
+							<div class="large-4 columns text-center">
+								<a href="#" class="button">Ikuti</a></span>
+							</div>
+						</div>
+					</div>
+					<div class="border">
+						<div class="row collapse">
+							<div class="large-8 columns">
+								<h3>Lorem ipsum</h1>
+								<p>Lorem ipsum dolor blah. Lorem ipsum dolor blah.</p>
+							</div>
+							<div class="large-4 columns text-center">
+								<a href="#" class="button">Ikuti</a></span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<a href="signup_form_2.html" class="fancy radius button right">Lanjutkan</a>
+			</div>
+		</div>
+
+		<div id="footer">
+        	<p>&copy; Serentak. 2015</p>
+		</div>
+<?php echo $__env->make('layouts.main_layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

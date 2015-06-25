@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<!--[if IE 9]><html class="lt-ie10" lang="en" > <![endif]-->
+<html class="no-js" lang="en" >
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Serentak</title>
+
+		<!-- If you are using CSS version, only link these 2 files, you may add app.css to use for your overrides if you like. -->
+		<link rel="stylesheet" href="css/normalize.css">
+		<link rel="stylesheet" href="css/foundation.css">
+		<link rel="stylesheet" href="css/app.css">
+		<link rel="stylesheet" href="css/font-awesome-4.2.0/css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="css/foundation-icons/foundation-icons.css">
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		
+
+		<script src="js/vendor/modernizr.js"></script>
+	</head>
+
+	<body>
+		<!-- <div class="fixed">  -->
+			<nav class="top-bar" data-topbar role="navigation">
+				<ul class="title-area">
+					<li class="name">
+						<img class="logo" src="img/logo.png">
+						<!-- <h1><a href="#">Serentak</a></h1> -->
+					</li>
+				</ul>
+			</nav> 
+		<!-- </div> -->
+
+		<div class="row">
+			<div class="large-12 columns">
+				<h1 class="text-center">Hai John Doe, mari ceritakan sedikit tentang dirimu..</h1>
+				<div class="signup-form">
+					<form class="custom">
+						<div class="row collapse">
+							<div class="small-2 columns">
+								<label>Jenis kelamin : </label>
+							</div>
+							<div class="small-10  columns">
+								<select>
+					                <option value="a">Laki-laki</option>
+					                <option value="b">Perempuan</option>
+					            </select>
+							</div>
+						</div>
+						<div class="row collapse">
+							<div class="small-2 columns">
+								<label>Tanggal lahir : </label>
+							</div>
+							<div class="small-10  columns">
+								<input type="text">
+							</div>
+						</div>
+						<div class="row collapse">
+							<div class="small-2 columns">
+								<label>Alamat : </label>
+							</div>
+							<div class="small-10  columns">
+								<input type="text">
+							</div>
+						</div>
+						<div class="row collapse">
+							<div class="small-2 columns">
+								<label>Kecamatan : </label>
+							</div>
+							<div class="small-10  columns">
+								<select> <!-- this should be check point -->
+					                <option value="a">Banyumanik</option>
+					                <option value="b">Candisari</option>
+					                <option value="c">Gajahmungkur</option>
+					                <option value="d">Gayamsari</option>
+					                <option value="e">Genuk</option>
+					                <option value="f">Gunungpati</option>
+					                <option value="g">Mijen</option>
+					                <option value="h">Ngaliyan</option>
+					                <option value="i">Pedurungan</option>
+					                <option value="j">Semarang Barat</option>
+					                <option value="k">Semarang Selatan</option>
+					                <option value="l">Semarang Tengah</option>
+					                <option value="m">Semarang Timur</option>
+					                <option value="n">Semarang Utara</option>
+					                <option value="o">Tembalang</option>
+					                <option value="p">Tugu</option>
+					            </select>
+							</div>
+						</div>
+						<div class="row collapse">
+							<div class="small-2 columns">
+								<label>Minat : </label>
+							</div>
+							<div class="small-10  columns">
+								<select> <!-- this should be check point -->
+					                <option value="a">Pendidikan</option>
+					                <option value="b">Lingkungan</option>
+					                <option value="c">Kepemudaan</option>
+					                <option value="d">Teknologi</option>
+					                <option value="e">Seni dan Budaya</option>
+					            </select>
+							</div>
+						</div>
+					</form>
+				</div>
+				<a href="signup_form_2.html" class="fancy radius button right">Lanjutkan</a>
+			</div>
+		</div>
+
+		<div id="footer">
+        	<p><i class="fa fa-copyright"></i> Serentak. 2015</p>
+		</div>
+
+		<script src="js/vendor/jquery.js"></script>
+  		<script src="js/foundation.min.js"></script>
+  		<script>
+    		$(document).foundation();
+  		</script>
+	
+	</body>
+</html>

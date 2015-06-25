@@ -1,0 +1,131 @@
+<?php $__env->startSection('content'); ?>
+		<!-- <div class="fixed">  -->
+			<nav class="top-bar" data-topbar role="navigation">
+				<ul class="title-area">
+					<li class="name">
+						<?php echo HTML::image('assets/img/logo.png', 'Serentak', array('class'=>'logo')); ?>
+
+					</li>
+				</ul>
+				<section class="top-bar-section"> 
+		        <!-- Right Nav Section --> 
+		        <ul class="right">
+		          <li class="has-dropdown"> <a href="#"><?php echo $user->nama_depan; ?></a> 
+		            <ul class="dropdown">
+		            	<?php if(Session::get('level')=='user'): ?>
+		            	<li><a href="<?php echo URL::to('/beranda'); ?>">Beranda</a></li>
+		            	<li><a href="<?php echo URL::to('/profile'); ?>">Akun</a></li>
+		            	<li><a href="<?php echo URL::to('/logout'); ?>">Keluar</a></li>
+		            	<?php elseif(Session::get('level')=='admin'): ?>
+		            	<li><a href="<?php echo URL::to('/beranda'); ?>">Beranda</a></li>
+		            	<li><a href="<?php echo URL::to('/tambah/komunitas'); ?>">Tambahkan Komunitas</a></li>
+		            	<li><a href="<?php echo URL::to('/tambah/acara'); ?>">Tambahkan Acara</a></li>
+		            	<li><a href="<?php echo URL::to('/profile'); ?>">Akun</a></li>
+		            	<li><a href="<?php echo URL::to('/logout'); ?>">Keluar</a></li>
+		            	<?php endif; ?>
+		            </ul>
+		          </li> 
+		        </ul> 
+		      </section>
+			</nav> 
+		<!-- </div> -->
+
+		<div class="row">
+			<div class="large-12 columns">
+				<h1>Hai <?php echo $user->nama_depan; ?>, mari ceritakan sedikit tentang dirimu..</h1>
+				<div class="profile border-grey">
+					<?php echo Form::open(array('method'=>'post', 'url'=>'profil/edit/')); ?>
+
+					<div class="row">
+						<h5><strong>Informasi Umum</strong></h5>
+						<div class="row">
+							<div class="large-6 columns">
+								<label>Nama depan :</label>
+								<input type="text" name="first_name" value="<?php echo $user->nama_depan; ?>">
+							</div>
+							<div class="large-6 columns">
+								<label>Nama belakang :</label>
+								<input type="text" name="last_name" value="<?php echo $user->nama_belakang; ?>">
+							</div>
+						</div>
+						<label>Bio :</label>
+						<textarea type="text" name="bio" ><?php echo $user->bio; ?></textarea>
+						<!-- <input type="text" name="bio" value="<?php echo $user->bio; ?>"> -->
+						<div class="row">
+							<div class="large-6 columns">
+								<label>Tanggal Lahir :</label>
+								<!-- <div data-date="" data-date-format="dd-mm-yyyy">
+									<?php echo $cal->generate(); ?>
+
+								</div> -->
+								<input type="date" name="bday" value="<?php echo $user->tanggal_lahir; ?>">
+							</div>
+							<div class="large-6 columns">
+								<label>Jenis Kelamin :</label>
+								<select name="gender">
+									<option value="1" <?php if($user->gender == 1): ?> selected="selected" <?php endif; ?>>Laki-laki</option>
+									<option value="2" <?php if($user->gender == 2): ?> selected="selected" <?php endif; ?>>Perempuan</option>
+								</select>
+							</div>
+						</div>
+
+						<h5><strong>Kontak</strong></h5>
+						<div class="row">
+							<div class="large-6 columns">
+								<label>Alamat :</label>
+								<input type="text" name="address" value="<?php echo $user->alamat; ?>">
+							</div>
+							<div class="large-6 columns">
+								<label>Password :</label>
+								<input type="password" name="pass" value="">
+							</div>
+						</div>
+						<div class="row">
+							<div class="large-6 columns">
+								<label>Surel :</label>
+								<input type="email" name="email" value="<?php echo $user->surel; ?>">
+							</div>
+							<div class="large-6 columns">
+								<label>Telepon :</label>
+								<input type="tel" name="phone" value="<?php echo $user->telpon; ?>">
+							</div>
+						</div>
+						<div class="row">
+							<div class="large-4 columns">
+								<label>Facebook :</label>
+								<span data-tooltip aria-haspopup="true" class="has-tip" title="Tempelkan alamat profil facebook Anda">
+									<input type="url" name="facebook" value="<?php echo $user->facebook; ?>"></span>
+							</div>
+							<div class="large-4 columns">
+								<label>Twitter :</label>
+								<span data-tooltip aria-haspopup="true" class="has-tip" title="Tempelkan alamat profil twitter Anda">
+									<input type="url" name="twitter" value="<?php echo $user->twitter; ?>"></span>
+							</div>
+							<div class="large-4 columns">
+								<label>Google Plus :</label>
+								<span data-tooltip aria-haspopup="true" class="has-tip" title="Tempelkan alamat profil gplus Anda">
+									<input type="url" name="gplus" value="<?php echo $user->gplus; ?>"></span>
+							</div>
+						</div>
+						<h5><strong>Minat</strong></h5>
+						<div class="row">
+							<div class="small-12  columns">
+								<?php foreach($minat as $item): ?>
+		                        <input type="checkbox" name="minat" value="<?php echo $item->id; ?>"> <?php echo $item->nama_genre; ?>
+
+		                        <?php endforeach; ?>
+							</div>
+						</div>
+						<button type="submit" class="radius button right">Simpan Perubahan</button>
+						<?php echo Form::close(); ?>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="footer">
+        	<p>&copy; Serentak. 2015</p>
+		</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.main_layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

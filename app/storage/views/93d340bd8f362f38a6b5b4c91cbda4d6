@@ -1,0 +1,89 @@
+<?php $__env->startSection('content'); ?>
+		<!-- <div class="fixed">  -->
+			<nav class="top-bar" data-topbar role="navigation">
+				<ul class="title-area">
+					<li class="name">
+						<?php echo HTML::image('assets/img/logo.png', 'Serentak', array('class'=>'logo')); ?>
+
+					</li>
+				</ul>
+				<section class="top-bar-section"> 
+		        <!-- Right Nav Section --> 
+		        <ul class="right">
+		          <li class="has-dropdown"> <a href="#"><?php echo Session::get('user_name'); ?></a> 
+		            <ul class="dropdown">
+		            	<?php if(Session::get('level')=='user'): ?>
+		            	<li><a href="<?php echo URL::to('/beranda'); ?>">Beranda</a></li>
+		            	<li><a href="<?php echo URL::to('/profile'); ?>">Akun</a></li>
+		            	<li><a href="<?php echo URL::to('/logout'); ?>">Keluar</a></li>
+		            	<?php elseif(Session::get('level')=='admin'): ?>
+		            	<li><a href="<?php echo URL::to('/beranda'); ?>">Beranda</a></li>
+		            	<li><a href="<?php echo URL::to('/tambah/komunitas'); ?>">Tambahkan Komunitas</a></li>
+		            	<li><a href="<?php echo URL::to('/tambah/acara'); ?>">Tambahkan Acara</a></li>
+		            	<li><a href="<?php echo URL::to('/profile'); ?>">Akun</a></li>
+		            	<li><a href="<?php echo URL::to('/logout'); ?>">Keluar</a></li>
+		            	<?php endif; ?>
+		            </ul>
+		          </li> 
+		        </ul> 
+		      </section>
+			</nav> 
+		<!-- </div> -->
+
+		<div class="row">
+			<div class="large-12 columns">
+				<h1 class="text-center">Perbarui Data Acara</h1>
+				<div class="profile border-grey">
+					<?php echo Form::open(array('method'=>'post', 'url'=>'/update/acara/'.$event->id)); ?>
+
+					<div class="row">
+						<div class="row">
+							<div class="large-6 columns">
+								<label>Nama Acara :</label>
+								<input type="text" name="event_name" value="<?php echo $event->judul_acara; ?>">
+							</div>
+							<div class="large-6 columns">
+								<label>Penyelenggara :</label>
+								<!-- <input type="text" name="komunitas" value=""> -->
+								<select name="komunitas">
+									<?php foreach($komunitas as $item): ?>
+									<option value="0" selected="selected">Pemerintahan</option>
+									<option value="<?php echo $item->id; ?>" <?php if($event->id_komunitas == $item->id): ?> selected="selected" <?php endif; ?>><?php echo $item->nama_komunitas; ?></option>
+									<?php endforeach; ?>
+								</select>
+							</div>
+						</div>
+						<label>Deskripsi Acara :</label>
+						<input type="text" name="description" value="<?php echo $event->deskripsi; ?>">
+						<div class="row">
+							<div class="large-6 columns">
+								<label>Tempat :</label>
+								<input type="text" name="place" value="<?php echo $event->tempat; ?>">
+							</div>
+							<div class="large-6 columns">
+								<label>Tanggal :</label>
+								<input type="date" name="date" value="<?php echo $event->tanggal; ?>">
+							</div>
+						</div>
+						<div class="row">
+							<div class="large-6 columns">
+								<label>Pendaftaran :</label>
+								<input type="text" name="register" value="<?php echo $event->pendaftaran; ?>">
+							</div>
+							<div class="large-6 columns">
+								
+							</div>
+						</div>
+						<button type="submit" class="radius button right">Simpan</button>
+						<?php echo Form::close(); ?>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="footer">
+        	<p>&copy; Serentak. 2015</p>
+		</div>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.main_layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

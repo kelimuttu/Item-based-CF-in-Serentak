@@ -1,0 +1,83 @@
+<?php $__env->startSection('content'); ?>
+
+		<!-- <div class="fixed">  -->
+			<nav class="top-bar" data-topbar role="navigation">
+				<ul class="title-area">
+					<li class="name">
+						<?php echo HTML::image('assets/img/logo.png', 'Serentak', array('class'=>'logo')); ?>
+
+					</li>
+				</ul>
+				<?php if(Session::has('logged_in')): ?>
+				<section class="top-bar-section"> 
+		        <!-- Right Nav Section --> 
+		        <ul class="right">
+		          <li class="has-dropdown"> <a href=""><?php echo Session::get('user_name'); ?></a> 
+		            <ul class="dropdown">
+		            	<?php if(Session::get('level')=='user'): ?>
+		            	<li><a href="<?php echo URL::to('/beranda'); ?>">Beranda</a></li>
+		            	<li><a href="<?php echo URL::to('/profile'); ?>">Akun</a></li>
+		            	<li><a href="<?php echo URL::to('/logout'); ?>">Keluar</a></li>
+		            	<?php elseif(Session::get('level')=='admin'): ?>
+		            	<li><a href="<?php echo URL::to('/beranda'); ?>">Beranda Admin</a></li>
+		            	<li><a href="<?php echo URL::to('/tambah/komunitas'); ?>">Tambahkan Komunitas</a></li>
+		            	<li><a href="<?php echo URL::to('/tambah/acara'); ?>">Tambahkan Acara</a></li>
+		            	<li><a href="<?php echo URL::to('/profile'); ?>">Akun</a></li>
+		            	<li><a href="<?php echo URL::to('/logout'); ?>">Keluar</a></li>
+		            	<?php endif; ?>
+		            </ul>
+		          </li> 
+		        </ul> 
+		        <?php endif; ?>
+		      </section> 
+			</nav> 
+		<!-- </div> -->
+
+		<?php if((Session::has('logged_in'))&&(Session::get('level')=='admin')): ?>
+
+		<div class="row">
+			<div class="large-12 columns">
+				<h1 class="text-center">Data Komunitas</h1>
+				<a href="<?php echo URL::to('/tambah/komunitas'); ?>" class="button">Tambah Komunitas</a>
+				<table>
+					<thead>
+						<tr>
+							<th width="50">No</th>
+							<th width="200">Nama Komunitas</th>
+							<th width="400">Deskripsi Singkat</th>
+							<th width="200">Kategori Komunitas</th>
+							<th width="200">Action</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<?php $i = 1;?>
+						<?php foreach($komunitas as $kom): ?>
+						<tr>
+							<td><?php echo $i; ?></td>
+							<td><?php echo $kom->nama_komunitas; ?></td>
+							<td><?php echo $kom->ringkasan; ?></td>
+							<td><?php echo $kom->nama_genre; ?></td>
+							<td>
+								<ul class="button-group round">
+								  <li><a href="<?php echo URL::to('/komunitas/'.$kom->slug); ?>" class="button secondary tiny" title="Kunjungi"><i class="fi-link"></i></a></li>
+								  <li><a href="<?php echo URL::to('/update/komunitas/'.$kom->id); ?>" class="button secondary tiny" title="Edit" ><i class="fi-clipboard-pencil"></i></a></li>
+								  <li><div class="button info tiny" title="Hapus"><i class="fi-x-circle" onclick="hapus_komunitas(<?php echo $kom->id; ?>)"></i></div></li>
+								</ul>
+							</td>
+						</tr>
+						<?php $i++; ?>
+						<?php endforeach; ?>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<?php endif; ?>
+		
+
+		<div id="footer">
+        	<p>&copy; Serentak. 2015</p>
+		</div>
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.main_layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

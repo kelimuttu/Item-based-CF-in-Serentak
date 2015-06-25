@@ -1,0 +1,149 @@
+.logo {
+  width: 162.707px;
+  height: 30.948px;
+}
+
+.tob-bar-right {
+  float: right !important;
+  padding-right: 20px;
+}
+
+.cover {
+	margin-top: 40px;
+}
+
+.border-grey {
+  border: 2px solid #efefef;
+  margin: 1.25rem ;
+  padding: 10px 30px;
+  position: relative;
+}
+
+.avatar {
+  margin: 30px;
+}
+
+.signin-panel, .signup-panel {
+  padding: 15px;
+
+}
+
+.signin-panel i , .signup-panel i {
+  font-size: 24px;
+  line-height: 40px;
+  color: #999;
+}
+
+.signup-panel form input, .signup-panel form span,
+.signin-panel form input, .signin-panel form span {
+  height: 40px;
+}
+
+.signup-form form input, .signup-form form label {
+  font-size: 16px;
+  line-height: 40px;
+  height: 40px;
+}
+
+form.custom .custom.dropdown{
+      height: 45px;
+    }
+    form.custom .custom.dropdown{
+      padding-top: 5px;
+    }
+    form.custom .custom.dropdown .selector{
+      top: 5px;
+    }
+
+.hh-center{
+  /*vertical-align: center;*/
+  height: 250px;
+  /*line-height: 250px;*/ 
+}
+
+/* Fancy Button  */
+.fancy.button {
+  background-color: #fff;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFFFFFFF', endColorstr='#FFEFEFEF');
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(73%, #f7f7f7), color-stop(100%, #efefef));
+  background-image: -webkit-linear-gradient(top, #ffffff 0%, #f7f7f7 73%, #efefef 100%);
+  background-image: -moz-linear-gradient(top, #ffffff 0%, #f7f7f7 73%, #efefef 100%);
+  background-image: -o-linear-gradient(top, #ffffff 0%, #f7f7f7 73%, #efefef 100%);
+  background-image: linear-gradient(top, #ffffff 0%, #f7f7f7 73%, #efefef 100%);
+  border: 1px solid rgba(52, 73, 94, 0.2);
+  color: rgba(52, 152, 219, 0.7);
+  font-size: 0.75em;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+.fancy.button:hover {
+  color: #3498db;
+  background-color: #fff;
+  *zoom: 1;
+  filter: progid:DXImageTransform.Microsoft.gradient(gradientType=0, startColorstr='#FFFFFFFF', endColorstr='#FFEDEDED');
+  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #ffffff), color-stop(73%, #efefef), color-stop(100%, #ededed));
+  background-image: -webkit-linear-gradient(top, #ffffff 0%, #efefef 73%, #ededed 100%);
+  background-image: -moz-linear-gradient(top, #ffffff 0%, #efefef 73%, #ededed 100%);
+  background-image: -o-linear-gradient(top, #ffffff 0%, #efefef 73%, #ededed 100%);
+  background-image: linear-gradient(top, #ffffff 0%, #efefef 73%, #ededed 100%);
+  border-color: rgba(52, 73, 94, 0.3);
+  -webkit-box-shadow: 0px 0px 6px rgba(52, 73, 94, 0.1);
+  -moz-box-shadow: 0px 0px 6px rgba(52, 73, 94, 0.1);
+  box-shadow: 0px 0px 6px rgba(52, 73, 94, 0.1);
+}
+.fancy.button:active {
+  -webkit-box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1) inset;
+}       
+
+.border {
+  border: 2px solid #404d77;
+  margin: 1.25rem ;
+  padding: 10px 30px;
+  position: relative;
+  line-height: 80px;
+  /*height:10em;*/
+}
+
+.rating {
+  margin :20px 20px;
+}
+  .rating i {
+    font-size: 24px;
+    line-height: 50px;
+    color: #999;
+  }
+
+/* Footer */
+#footer{
+    height: 50px;
+    bottom: 0px;
+    left: 0px;
+    line-height: 50px;
+    color: #aaa;
+    text-align: center;
+    width: 100%;
+}
+
+.fi-male-female,
+.fi-torsos-all,
+.fi-results-demographics {
+  font-size: 120px;
+  color: #404d77;
+}
+
+.fi-social-facebook,
+.fi-social-twitter,
+.fi-social-google-plus {
+  font-size: 30px;
+  color: #404d77;
+}
+
+.fi-star{
+  font-size: 36px;
+  color: #404d77;
+}
+
+

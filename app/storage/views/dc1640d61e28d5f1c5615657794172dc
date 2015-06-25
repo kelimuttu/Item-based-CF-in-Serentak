@@ -1,0 +1,197 @@
+<?php $__env->startSection('content'); ?>
+		<!-- <div class="fixed">  -->
+			<nav class="top-bar" data-topbar role="navigation">
+				<ul class="title-area">
+					<li class="name">
+						<?php echo HTML::image('assets/img/logo.png', 'Serentak', array('class'=>'logo')); ?>
+
+					</li>
+				</ul>
+				<?php if(Session::has('logged_in')): ?>
+				<section class="top-bar-section"> 
+		        <!-- Right Nav Section --> 
+		        <ul class="right">
+		          <li class="has-dropdown"> <a href=""><?php echo $user->nama_depan; ?></a> 
+		            <ul class="dropdown">
+		            	<?php if(Session::get('level')=='user'): ?>
+		            	<li><a href="<?php echo URL::to('/beranda'); ?>">Beranda</a></li>
+		            	<li><a href="<?php echo URL::to('/profile'); ?>">Akun</a></li>
+		            	<li><a href="<?php echo URL::to('/logout'); ?>">Keluar</a></li>
+		            	<?php elseif(Session::get('level')=='admin'): ?>
+		            	<li><a href="<?php echo URL::to('/beranda'); ?>">Beranda</a></li>
+		            	<li><a href="<?php echo URL::to('/tambah/komunitas'); ?>">Tambahkan Komunitas</a></li>
+		            	<li><a href="<?php echo URL::to('/tambah/acara'); ?>">Tambahkan Acara</a></li>
+		            	<li><a href="<?php echo URL::to('/profile'); ?>">Akun</a></li>
+		            	<li><a href="<?php echo URL::to('/logout'); ?>">Keluar</a></li>
+		            	<?php endif; ?>
+		            </ul>
+		          </li> 
+		        </ul>
+
+		        <div class="large-3 columns right">
+		        	<?php echo Form::open(array('method'=>'post', 'url'=>'/pencarian')); ?>
+
+				      <div class="row collapse postfix-round">
+				        <div class="small-9 columns">
+				          <input type="text" name="key" placeholder="Cari Komunitas">
+				        </div>
+				        <div class="small-3 columns">
+				          <button type="submit" class="button postfix">Cari</button>
+				        </div>
+				      </div>
+				    <?php echo Form::close(); ?>
+
+				</div>
+		      </section>
+		      <?php endif; ?>
+			</nav> 
+		<!-- </div> -->
+<?php if(Session::has('logged_in')): ?>
+		<div class="row">
+			<div class="large-12 columns">
+				<div class="profile border-grey">
+					<div class="row">
+						<div class="large-8 columns">
+							<div class="row userprofile">
+								<div class="large-8 columns">
+									<h1><?php echo $user->nama_depan; ?> <?php echo $user->nama_belakang; ?></h1>
+								</div>
+								<div class="large-4 columns">
+									<a href="<?php echo URL::to('/profil/edit/'); ?>" class="fancy radius button right">edit profil</a>
+								</div>
+								<hr>
+							</div>
+							<div class="bio">
+								<label>Bio :</label>
+								<h6><?php echo $user->bio; ?></h6>
+								<label>Jenis Kelamin :</label>
+								
+								<h6><?php 
+								if ($user->gender == 1) {
+									echo "Laki-laki";
+									} else if ($user->gender == 2) {
+										echo "Perempuan";
+									} else {
+										echo "";
+									};
+								?></h6>
+								<?php if($user->tanggal_lahir != '0000-00-00'): ?>
+								<label>Tanggal lahir :</label>
+								<p><?php 
+								$tgl = $user->tanggal_lahir;	
+								$tanggal = date("d",strtotime($tgl)).' '.date("F",strtotime($tgl)).' '.date("o",strtotime($tgl))."\n";
+								echo $tanggal;?></p>
+								<?php endif; ?>
+								<label>Surel :</label>
+								<p><?php echo $user->surel; ?></p>
+								<label>Lokasi :</label>
+								<p><?php echo $user->alamat; ?></p>
+								<label>Kontak :</label>
+								<p><?php echo $user->telpon; ?></p>
+								<label>Anggota sejak :</label>
+								<p><?php 
+								$since = $user->created_at;	
+								$date = date("d",strtotime($since)).' '.date("F",strtotime($since)).' '.date("o",strtotime($since))."\n";
+								echo $date;?></p>
+								<label>Sosial Media :</label>
+								<?php if($user->facebook != null): ?>
+								<a href="<?php echo URL::to($user->facebook); ?>" title="Facebook"><i class="fi-social-facebook"></i></a></li>
+								<?php endif; ?>
+								<?php if($user->twitter != null): ?>
+								<a href="<?php echo URL::to($user->twitter); ?>" title="Twitter"><i class="fi-social-twitter"></i></a></li>
+								<?php endif; ?>
+								<?php if($user->gplus != null): ?>
+								<a href="<?php echo URL::to($user->gplus); ?>" title="Google Plus"><i class="fi-social-google-plus"></i></a></li>
+								<?php endif; ?>
+							</div>
+						</div>
+						<div class="large-4 columns">
+							<div class="avatar text-center">
+								<?php if(Session::get('fbid')== null): ?>
+								<a href="" data-reveal-id="avatar-zoom"><?php echo HTML::image('assets/img/avatar/'.$user->foto, 'Serentak', array('class'=>'th')); ?></a>
+								<?php else: ?>
+								<a href="" data-reveal-id="avatar-zoom"><?php echo HTML::image('https://graph.facebook.com/'.Session::get('fbid').'/picture', 'Serentak', array('class'=>'th')); ?></a>
+								<?php endif; ?>
+								<p><small><a href="" data-reveal-id="avatar-modal">Ganti foto profil</a></small></p>
+							</div>
+							<hr>
+							<?php if($user->level == 'admin'): ?>
+							<div class="Level text-center">
+									<p>Kamu adalah seorang <?php echo $user->level; ?>!</p>
+							</div>
+							<hr>
+							<?php endif; ?>
+							<?php if(Session::get('level')=='user'): ?>
+							<div class="komunitas">
+								<ul>
+									<label>Komunitas yang diikuti:</label>
+									<?php foreach($komunitas as $listkom): ?>
+									<li><a href="/komunitas/<?php echo $listkom->slug; ?>"><?php echo $listkom->nama_komunitas; ?></a></li>
+									<?php endforeach; ?>
+								</ul>
+							</div>
+							<hr>
+							<div class="minat">
+								<ul>
+									<label>Acara yang diikuti:</label>
+									<?php foreach($event as $listacara): ?>
+									<li><a href="/acara/<?php echo $listacara->slug; ?>"><?php echo $listacara->judul_acara; ?></a></li>
+									<?php endforeach; ?>
+								</ul>
+							</div>
+							<?php endif; ?>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="footer">
+        	<p>&copy; Serentak. 2015</p>
+		</div>
+
+		<div id="avatar-zoom" class="reveal-modal" data-reveal> 
+          <h3 class="text-center"><?php echo $user->nama_depan; ?> <?php echo $user->nama_belakang; ?></h3>
+          <div class="row">
+          	<fieldset>
+          	<div class="small-12 columns">
+          		<?php if(Session::get('fbid')== null): ?>
+          		<?php echo HTML::image('assets/img/avatar/'.$user->foto, 'Serentak', array('class'=>'th')); ?>
+
+          		<?php else: ?>
+          		<?php echo HTML::image('https://graph.facebook.com/'.Session::get('fbid').'/picture', 'Serentak', array('class'=>'th')); ?>
+
+          		<?php endif; ?>
+          	</div>
+          	</fieldset>
+          </div>
+          <a class="close-reveal-modal">&#215;</a> 
+        </div>
+
+		<div id="avatar-modal" class="reveal-modal" data-reveal> 
+          <h3>Atur Foto Profil</h3>
+          <div class="row">
+          	<fieldset>
+          	<?php echo Form::open(array('method'=>'post', 'url'=>'profile/upload/', 'files'=>'true')); ?>
+
+          	<div class="small-6 columns">
+          		<?php echo HTML::image('assets/img/avatar/'.$user->foto, 'Serentak', array('class'=>'th')); ?>
+
+          		<!-- <?php echo HTML::image('assets/img/default.png', 'Serentak', array('class'=>'th')); ?> -->
+          	</div>
+          	<div class="small-6 columns text-center">
+          		<button type="button" onclick="$('#input_file').trigger('click')">Pilih foto</button>
+          		<input type="file" name="avatar" id="input_file" style="display:none;">
+          		<input class="button" type="submit" name="unggah" value="Unggah"/>
+          	</div>
+          	<?php echo Form::close(); ?>
+
+          	</fieldset>
+          </div>
+          	
+          </form>
+          <a class="close-reveal-modal">&#215;</a> 
+        </div>
+<?php endif; ?>
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.main_layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
